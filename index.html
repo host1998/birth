@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Responsive Navbar and Hero Section</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10; /* Ensures the navbar stays on top of other content */
+        }
+
+        /* Add a padding-top to the body or the next section to prevent content from being hidden under the navbar */
+        
+
+        /* Optional: Add a shadow to make it stand out */
+        #navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+  /* Keyframes for scrolling text from left to right */
+        @keyframes scrollLeftToRight {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Apply scrolling animation to the text */
+        .scrolling-text {
+            display: inline-block;
+            animation: scrollLeftToRight 15s linear infinite;
+            white-space: nowrap; /* Ensure text stays in a single line */
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        /* Apply rotating animation to the container */
+        .rotate-container {
+            display: inline-block;
+            animation: rotateText 10s linear infinite;
+        }
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            width: 250px;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .carousel-item .text-center {
+            padding: 1rem;
+        }
+
+        /* Left and right button styles */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transform: translateY(-50%);
+        }
+
+        .carousel-btn-left {
+            left: 4px;
+        }
+
+        .carousel-btn-right {
+            right: 4px;
+        }
+        .join-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .join-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile padding for card */
+        @media (max-width: 768px) {
+            .join-card {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+
+        /* Background color for section */
+        .join-section {
+            background-color: #f4f9f9;
+        }
+
+        /* Bottom images styling */
+        .bottom-images img {
+            width: 48%;
+            margin: 1%;
+        }
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-text h2 {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-item img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Animations for service cards */
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile padding for cards */
+        @media (max-width: 768px) {
+            .service-card {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+
+        .ai-pregnant-job-section {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .ai-pregnant-job-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .ai-pregnant-job-content {
+            
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 24px;
+            animation: slideUp 1.5s ease-in-out forwards;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .ai-pregnant-job-content a {
+            color: #28a745;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .ai-pregnant-job-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .ai-pregnant-job-title {
+                text-align: center;
+                font-size: 1.6rem;
+            }
+
+            .ai-pregnant-job-content {
+                text-align: center;
+                font-size: 1rem;
+            }
+        }
+
+
+        @keyframes scrollRightToLeft {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Apply reversed scrolling animation to the text */
+.scrolling-text {
+    display: inline-block;
+    animation: scrollRightToLeft 40s linear infinite; /* Changed animation direction */
+    white-space: nowrap; /* Ensure text stays in a single line */
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Apply rotating animation to the container */
+.rotate-container {
+    display: inline-block;
+    animation: rotateText 05s linear infinite;
+}
+
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav  id="navbar"  class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <!-- Website Logo -->
+                        <a class="flex items-center py-4 px-2" href="#">
+                            <img alt="Company Logo" class="h-8 w-8 mr-2" height="50"
+                                src="https://storage.googleapis.com/a1aa/image/y3XO8RmbN94lO1RwbrL0KDeBfCDx5ZpRTLgyRFOw46UQh50TA.jpg" />
+                            <span class="font-semibold text-gray-500 text-lg">
+                                CompanyName
+                            </span>
+                        </a>
+                    </div>
+                    <!-- Primary Navbar items -->
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a class="py-4 px-2 text-gray-500 border-b-4 border-green-500 font-semibold" href="#home">
+                            Home
+                        </a>
+                        <a class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300" href="#about">
+                            About
+                        </a>
+                        <a class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300" href="#service">
+                            Services
+                        </a>
+                        <a class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300" href="#contact">
+                            Contact
+                        </a>
+                    </div>
+                </div>
+                <!-- Secondary Navbar items -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300" href="tel:+919647461398">
+                        Call Now
+                    </a>
+                    <a class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300" href="https://wa.me/919647461398">
+                        WhatsApp
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- mobile menu -->
+        <div class="hidden mobile-menu">
+            <ul>
+                <li>
+                    <a class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold" href="#home">Home</a>
+                </li>
+                <li>
+                    <a class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" href="#service">Services</a>
+                </li>
+                <li>
+                    <a class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" href="#contact">Contact</a>
+                </li>
+                <li>
+                    <a class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" href="tel:+919647461398">
+                        Call Now
+                    </a>
+                </li>
+                <li>
+                    <a class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" href="https://wa.me/+919647461398">
+                        WhatsApp
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+ <section class="bg-black text-white py-6">
+        <div class="container mx-auto px-6 flex justify-center items-center">
+            <div class="overflow-hidden w-full">
+                <span class="scrolling-text">
+                    ALL India Pregnant Job - Best Salary of Pregnant Service | Company Pvt Ltd | India Service Provider | Call Now: <a href="tel:+919038918403" class="text-green-500">+919038918403</a> | WhatsApp Us: <a href="https://wa.me/+918420164998" class="text-green-500">+918420164998</a>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <div  class="relative bg-cover bg-center h-screen hero-overlay" style="background-image: url('./images/hero.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex items-center justify-center h-full hero-text">
+            <div class="text-center text-white px-4">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">
+                    Welcome to All India Pregnant Service
+                </h2>
+                <h3 class="text-2xl md:text-3xl font-semibold mb-4">
+                    The Best Support for Pregnant Care
+                </h3>
+                <a class="bg-green-500 text-white py-2 px-4 rounded-full text-lg md:text-xl hover:bg-green-600 transition duration-300" href="tel:+919647461398">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENET -->
+    <section id="about" class="ai-pregnant-job-section py-12 px-6 max-w-7xl mx-auto">
+        <h2 class="ai-pregnant-job-title">All India Pregnant Job - Best Salary Pregnant Jobs</h2>
+        <p class="ai-pregnant-job-content">
+            When a woman is pregnant or debating whether to try for a family, she often considers this important question:
+            What impact will having a child and getting pregnant have on my career? And considering this is quite normal,
+            especially in light of the fact that having kids contributes significantly to the pay disparity between men and
+            women.
+        </p>
+        <p class="ai-pregnant-job-content">
+            Maintaining a work-family balance can be facilitated by giving it some thought now. Furthermore, you don’t
+            have to stick to a plan once you discover out you’re pregnant—you are able to make choices as you go. Making
+            this transition as seamless as possible can be achieved by determining how you feel about taking a maternity
+            leave or professional break.
+        </p>
+        <p class="ai-pregnant-job-content">
+            Studies indicate that women, who were previously higher earners, are more inclined to cut back on their job
+            hours after having children. It seems that having children causes women’s attitudes to shift. Your ability to
+            quickly land the ideal position may be impacted if you decide to return to working fewer hours. Within a decade
+            of having children, 26% of men and 13% of women in a sizable UK study received promotions or job upgrades.
+        </p>
+        <p class="ai-pregnant-job-content">
+            Since learning that she was pregnant, Mira has been unsure of herself. Even though she is content personally,
+            she was nervous about applying for a new job and possibly having an interview with a company. Mira was asked
+            to lead a team, and after completing her preliminary evaluation, she was selected as a finalist. The last HR
+            interview was the only obstacle left to overcome. And in the midst of this, she received the news that she was
+            pregnant.
+        </p>
+        <p class="ai-pregnant-job-content">
+            Should Mira bring this up with her recruiter? Should she accept the position and inform them when the time comes?
+        </p>
+    </section>
+
+    
+    <!-- Gallery Section -->
+<section class="py-12 bg-gray-100">
+    <div class="container mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-8">Our Services Gallery</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <!-- Gallery Images -->
+            <div class="gallery-item">
+                <img src="./images/2.jpg" alt="Image 1" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/3.jpg" alt="Image 2" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/4.jpg" alt="Image 3" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/5.jpg" alt="Image 4" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/6.jpg" alt="Image 5" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/7.jpg" alt="Image 6" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/8.jpg" alt="Image 7" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/9.jpg" alt="Image 8" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/10.jpg" alt="Image 1" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/11.jpg" alt="Image 2" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/12.jpg" alt="Image 3" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/13.jpg" alt="Image 4" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/14.jpg" alt="Image 5" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/15.jpg" alt="Image 6" class="w-full rounded-lg shadow-md" />
+            </div>
+            <div class="gallery-item">
+                <img src="./images/16.jpg" alt="Image 7" class="w-full rounded-lg shadow-md" />
+            </div>
+        </div>
+        <div class="mt-6">
+            <button id="view-more" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 transition duration-300">
+                View More
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="ai-pregnant-job-section ai-pregnant-job-container">
+    <h2 class="ai-pregnant-job-title">How to Maintain Work-Life Balance After Becoming a Parent?</h2>
+    <p class="ai-pregnant-job-content">
+        In an effort to strike a balance, parents often look for part-time jobs, ask their employer to consider a
+        change to part-time work, or request flexible scheduling. This allows other parents to pursue careers and manage
+        both work and home life effectively.
+    </p>
+    <p class="ai-pregnant-job-content">
+        If you decide to return to full-time work, you'll need to figure out how your childcare arrangements fit within
+        your working hours. It may also be necessary to plan for any potential overtime or travel. If you are nursing
+        your baby, breastfeeding schedules can also be factored in.
+    </p>
+    <p class="ai-pregnant-job-content">
+        Regardless of the childcare arrangements, leaving your child behind can be emotionally taxing. Here are some
+        tips from other parents on how to manage work and family life. 
+    </p>
+    <p class="ai-pregnant-job-content">
+        Ultimately, balancing work and home life can be both rewarding and challenging. These tips will help you see the
+        bigger picture and realize that despite the challenges, your child is adapting well.
+    </p>
+
+    
+</section>
+
+<!-- Section on Hiring Pregnant Women -->
+<section class="ai-pregnant-job-section ai-pregnant-job-container">
+    <h2 class="ai-pregnant-job-title">Hiring Pregnant Women: Challenges and Opportunities</h2>
+    <p class="ai-pregnant-job-content">
+        Hiring pregnant women can present certain practical challenges such as the six-month maternity leave,
+        logistics, and the mindset of both the public and the pregnant women themselves. Women seeking job changes
+        while pregnant are not often approached by recruiters.
+    </p>
+    <p class="ai-pregnant-job-content">
+        Despite this, there are instances where organizations hire pregnant women when the employee's skill set
+        outweighs the anticipated time off. For example, a representative from Flipkart confirmed that the company does
+        not have any specific policy regarding hiring pregnant women, adhering to equal employment opportunity
+        principles.
+    </p>
+    <p class="ai-pregnant-job-content">
+        However, in some organizations, workers cannot take maternity leave until they have been employed for 80 days.
+        Even so, it is important for employers to recognize that women’s expertise can outweigh concerns about the
+        number of days they will be absent from work.
+    </p>
+
+
+    
+</section>
+
+    <!-- Service Page Section -->
+    <section id="service" class="py-12 bg-gray-50">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">All India Pregnant Service Pvt Ltd</h2>
+            <p class="text-lg mb-12 text-gray-700">
+                Best salary offers for pregnant services across all over India. We provide professional services with care.
+            </p>
+
+            <!-- Service Cards Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+                <!-- Pregnant Service Card -->
+                <div class="service-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Pregnant Service</h3>
+                    <p class="text-gray-600">
+                        Offering expert care and assistance for pregnant women in all stages. Our experienced professionals ensure a safe and healthy pregnancy.
+                    </p>
+                </div>
+
+                <!-- Find Matches Card -->
+                <div class="service-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Find Matches</h3>
+                    <p class="text-gray-600">
+                        We provide a platform for finding matches for dating and relationship purposes. Connect with potential partners based on your preferences.
+                    </p>
+                </div>
+
+                <!-- Start Dating Card -->
+                <div class="service-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-cupid"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Start Dating</h3>
+                    <p class="text-gray-600">
+                        Get started with dating services that help you find meaningful connections with individuals who share your interests and values.
+                    </p>
+                </div>
+
+                <!-- Adult Dating Card -->
+                <div class="service-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Adult Dating</h3>
+                    <p class="text-gray-600">
+                        A discreet service for adults seeking like-minded individuals. We offer a safe and comfortable space for casual encounters.
+                    </p>
+                </div>
+
+                <!-- Women Seeking Men Card -->
+                <div class="service-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Women Seeking Men</h3>
+                    <p class="text-gray-600">
+                        A platform for women who are looking to connect with men for companionship, dates, or relationships based on mutual interests.
+                    </p>
+                </div>
+
+                <!-- Friendship Club Card -->
+                <div class="service-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Friendship Club</h3>
+                    <p class="text-gray-600">
+                        Join our friendship club to meet new people, build lasting friendships, and engage in community activities that enrich your life.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Madam Profiles Carousel Section -->
+    <section class="py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Meet Our Madams</h2>
+
+            
+            <div class="carousel-wrapper relative">
+                <div class="carousel-inner flex">
+                    <!-- Madam 1 Profile Card -->
+                    <!-- <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/2.jpg" alt="Madam Profile 1" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Madam 1</h3>
+                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div> -->
+
+                    <!-- Madam 2 Profile Card -->
+                    <!-- <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/3.jpg" alt="Madam Profile 2" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Madam 2</h3>
+                            <p class="text-gray-600">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div> -->
+
+                    <!-- Madam 3 Profile Card -->
+                    <!-- <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/4.jpg" alt="Madam Profile 3" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Madam 3</h3>
+                            <p class="text-gray-600">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        </div>
+                    </div> -->
+
+                    <!-- Madam 4 Profile Card -->
+                    <!-- <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/5.jpg" alt="Madam Profile 4" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Madam 4</h3>
+                            <p class="text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                        </div>
+                    </div> -->
+
+                    <!-- Madam 5 Profile Card -->
+                    <!-- <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/6.jpg" alt="Madam Profile 5" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Madam 5</h3>
+                            <p class="text-gray-600">Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+                        </div>
+                    </div> -->
+
+                    <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/2.jpg" alt="Ananya Sharma" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Ananya Sharma</h3>
+                            <p class="text-gray-600">Ananya is an entrepreneur from Delhi, offering professional services in eco-friendly fashion design. She specializes in sustainable fashion solutions that contribute to environmental well-being. Ananya is now also open to exploring partnerships in family planning, offering support for couples looking for guidance on reproductive health and fertility. Her services include consultations on healthy lifestyle practices that support fertility and wellness.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Profile 2: Priya Desai -->
+                    <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/3.jpg" alt="Priya Desai" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Priya Desai</h3>
+                            <p class="text-gray-600">Priya, a chef based in Mumbai, is known for her fusion cuisine combining Indian and continental dishes. Beyond her culinary skills, Priya is now offering personalized wellness packages for individuals and couples looking to enhance their fertility and reproductive health through nutritional advice and meal plans. Her holistic approach supports the overall health of those seeking to start a family.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Profile 3: Sneha Reddy -->
+                    <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/4.jpg" alt="Sneha Reddy" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Sneha Reddy</h3>
+                            <p class="text-gray-600">Sneha is an artist from Hyderabad with a passion for blending traditional and modern artistic techniques. Along with her art, Sneha is now offering fertility support services, including workshops and private consultations for individuals and couples looking to explore alternative methods for conception and reproductive health. Her services integrate mindfulness practices that promote mental well-being and emotional balance during fertility journeys.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Profile 4: Simran Kaur -->
+                    <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/5.jpg" alt="Simran Kaur" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Simran Kaur</h3>
+                            <p class="text-gray-600">Simran is a motivational speaker and leadership coach from Amritsar. She has helped many individuals overcome personal obstacles and achieve professional success. Simran now offers coaching and counseling services for couples seeking fertility guidance and emotional support throughout their reproductive journey. Her holistic approach helps individuals and couples navigate the emotional, mental, and physical challenges of starting a family.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Profile 5: Nisha Singh -->
+                    <div class="carousel-item bg-white rounded-lg shadow-lg">
+                        <img src="./images/6.jpg" alt="Nisha Singh" class="rounded-t-lg">
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold">Nisha Singh</h3>
+                            <p class="text-gray-600">Nisha is a certified fitness trainer from Bangalore, offering personalized fitness programs focusing on overall health and well-being. She is now expanding her services to include fertility and reproductive health coaching, focusing on physical fitness and mental health as key factors in preparing for pregnancy. Nisha helps individuals and couples develop tailored fitness plans that support reproductive health and overall wellness, paving the way for a healthy pregnancy journey.</p>
+                        </div>
+                    </div>
+                
+
+                <!-- Left and Right Buttons -->
+                <button class="carousel-btn carousel-btn-left" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn carousel-btn-right" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+<div class="relative bg-cover bg-center h-screen hero-overlay" style="background-image: url('./images/her02.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex items-center justify-center h-full hero-text">
+            <div class="text-center text-white px-4">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">
+                    Best pregnant service all over india provider PVT. LTD 
+                </h2>
+                
+                <a class="bg-green-500 text-white py-2 px-4 rounded-full text-lg md:text-xl hover:bg-green-600 transition duration-300" href="tel:+919647461398">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- How to Join Section -->
+    <section class="py-12 join-section">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">How to Join Pregnant Service Pvt Ltd</h2>
+            <p class="text-lg mb-12 text-gray-700">
+                Joining our Pregnant Service Pvt Ltd is easy. Follow the steps outlined below to become a part of our professional team offering care and support.
+            </p>
+
+            <!-- Join Steps Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+                <!-- Step 1 Card -->
+                <div class="join-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Step 1: Apply Now</h3>
+                    <p class="text-gray-600">
+                        Fill out the application form on our website with your personal details, experience, and qualifications. We review all applications carefully.
+                    </p>
+                </div>
+
+                <!-- Step 2 Card -->
+                <div class="join-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Step 2: Interview</h3>
+                    <p class="text-gray-600">
+                        If your application is shortlisted, we will schedule an interview. During the interview, we discuss your experience and passion for our services.
+                    </p>
+                </div>
+
+                <!-- Step 3 Card -->
+                <div class="join-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Step 3: Onboarding</h3>
+                    <p class="text-gray-600">
+                        After a successful interview, you will undergo a brief onboarding process to get you familiarized with our services, tools, and culture.
+                    </p>
+                </div>
+
+                <!-- Step 4 Card -->
+                <div class="join-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Step 4: Training</h3>
+                    <p class="text-gray-600">
+                        Receive the necessary training to ensure you are well-prepared for the role. Our training programs are designed to help you succeed.
+                    </p>
+                </div>
+
+                <!-- Step 5 Card -->
+                <div class="join-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Step 5: Join the Team</h3>
+                    <p class="text-gray-600">
+                        Once you've completed training, you're ready to join our team and start working on providing the best care for our clients.
+                    </p>
+                </div>
+
+                <!-- Step 6 Card -->
+                <div class="join-card card bg-white rounded-lg shadow-lg p-6 hover:scale-105">
+                    <div class="text-green-500 text-4xl mb-4">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Step 6: Start Making a Difference</h3>
+                    <p class="text-gray-600">
+                        Start delivering high-quality services and make a positive impact on the lives of those you care for. Your journey with us begins now!
+                    </p>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+<section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Our Portrait Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- First Image -->
+                <div class="flex justify-center">
+                    <img src="./images/portrait3.jpg" alt="Image 1" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <!-- Second Image -->
+                <div class="flex justify-center">
+                    <img src="./images/portrait2.jpg" alt="Image 2" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+<section id="contact" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Contact Us</h2>
+
+            <!-- Three Columns for Desktop, One by One for Mobile -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Contact Us -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Pregnant Service Pvt Ltd</h3>
+                    <p class="text-lg mb-4">Pune, Maharashtra</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-phone-alt text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Phone: <a href="tel:+918420164998" class="text-blue-500">+918420164998 , +919038918403</a></span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-envelope text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Email: <a href="mailto:info@allindiapregnantservice.com" class="text-blue-500">info@allindiapregnantservice.com</a></span>
+                    </div>
+                </div>
+
+                <!-- Quickly Join Section -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Quickly Join</h3>
+                    <p class="text-lg mb-4">Become part of our network and get the best services in the field of pregnancy care.</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-arrow-right text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Join Now</span>
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- Service Cities Section -->
+<section class="py-12 bg-gray-100">
+    <div class="container mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-8">Services in These Cities</h2>
+        <div class="flex flex-wrap justify-center text-lg space-x-4">
+            <span>Delhi</span> <span class="mx-2">|</span> 
+            <span>Mumbai</span> <span class="mx-2">|</span> 
+            <span>Pune</span> <span class="mx-2">|</span> 
+            <span>Hyderabad</span> <span class="mx-2">|</span> 
+            <span>Chennai</span> <span class="mx-2">|</span> 
+            <span>Ahemadabad</span> <span class="mx-2">|</span> 
+            <span>Bengaluru</span> <span class="mx-2">|</span> 
+            <span>Kolkata</span> <span class="mx-2">|</span> 
+            <span>Chandigarh</span> <span class="mx-2">|</span> 
+            <span>Jaipur</span> <span class="mx-2">|</span> 
+            <span>Surat</span> <span class="mx-2">|</span> 
+            <span>Lucknow</span> <span class="mx-2">|</span> 
+            <span>Indore</span> <span class="mx-2">|</span> 
+            <span>Patna</span> <span class="mx-2">|</span> 
+            <span>Nagpur</span> <span class="mx-2">|</span> 
+            <span>Vadodara</span> <span class="mx-2">|</span> 
+            <span>Coimbatore</span> <span class="mx-2">|</span> 
+            <span>Visakhapatnam</span> <span class="mx-2">|</span> 
+            <span>Agra</span> <span class="mx-2">|</span> 
+            <span>Gurugram</span> <span class="mx-2">|</span> 
+            <span>Faridabad</span> <span class="mx-2">|</span> 
+            <span>Vijayawada</span> <span class="mx-2">|</span> 
+            <span>Madurai</span> <span class="mx-2">|</span> 
+            <span>Rajkot</span> <span class="mx-2">|</span> 
+            <span>Guwahati</span> <span class="mx-2">|</span> 
+            <span>Kanpur</span> <span class="mx-2">|</span> 
+            <span>Jammu</span> <span class="mx-2">|</span> 
+            <span>Allahabad</span> <span class="mx-2">|</span> 
+            <span>Bhopal</span> <span class="mx-2">|</span> 
+            <span>Raipur</span> <span class="mx-2">|</span> 
+            <span>Thane</span> <span class="mx-2">|</span> 
+            <span>Ranchi</span> <span class="mx-2">|</span> 
+            <span>Mehsana</span> <span class="mx-2">|</span> 
+            <span>Tiruppur</span> <span class="mx-2">|</span> 
+            <span>Nasik</span> <span class="mx-2">|</span> 
+            <span>Kolhapur</span> <span class="mx-2">|</span> 
+            <span>Udaipur</span> <span class="mx-2">|</span> 
+            <span>Muzaffarpur</span> <span class="mx-2">|</span> 
+            <span>Jodhpur</span> <span class="mx-2">|</span> 
+            <span>Kochi</span> <span class="mx-2">|</span> 
+            <span>Dehradun</span> <span class="mx-2">|</span> 
+            <span>Panipat</span> <span class="mx-2">|</span> 
+            <span>Bhubaneswar</span> <span class="mx-2">|</span> 
+            <span>Siliguri</span> <span class="mx-2">|</span> 
+            <span>Howrah</span> <span class="mx-2">|</span> 
+            <span>Chittoor</span> <span class="mx-2">|</span> 
+            <span>Patiala</span> <span class="mx-2">|</span> 
+            <span>Amritsar</span> <span class="mx-2">|</span> 
+            <span>Gwalior</span>
+        </div>
+    </div>
+</section>
+<footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-between">
+                <!-- About Us Section -->
+                <div class="w-full sm:w-1/3 mb-8 sm:mb-0">
+                    <h4 class="text-xl font-semibold mb-4">About Us</h4>
+                    <p class="text-sm">All India Pregnant Service Pvt Ltd provides the best services for pregnant care and ensures professional support throughout the journey. We are available in various cities across India.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="w-full sm:w-1/3 mb-8 sm:mb-0">
+                    <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" class="text-sm hover:text-green-500 transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-sm hover:text-green-500 transition duration-300">About Us</a></li>
+                        <li><a href="#service" class="text-sm hover:text-green-500 transition duration-300">Services</a></li>
+                        <li><a href="#contact" class="text-sm hover:text-green-500 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="w-full sm:w-1/3">
+                    <h4 class="text-xl font-semibold mb-4">Contact Info</h4>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-phone-alt text-green-500 mr-2"></i>
+                        <span class="text-sm">Phone: <a href="tel:+918235966213" class="hover:text-green-500">+919647461398 | +918235966213</a></span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-envelope text-green-500 mr-2"></i>
+                        <span class="text-sm">Email: <a href="mailto:info@allindiapregnantservice.com" class="hover:text-green-500">info@allindiapregnantservice@gmail.com</a></span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+                        <span class="text-sm">Address: 2843 Mathura East, Mumbai, Maharashtra 400059</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Section -->
+            <div class="mt-8 border-t border-gray-700 pt-4 text-center">
+                <p class="text-sm">&copy; 2024 All India Pregnant Service Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // JavaScript for controlling the carousel navigation
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const carouselInner = document.querySelector('.carousel-inner');
+        let scrollAmount = 0;
+
+        // Scroll the carousel to the left
+        prevBtn.addEventListener('click', () => {
+            if (scrollAmount > 0) {
+                scrollAmount -= 270;  // Adjust width to match card width and margin
+                carouselInner.style.transform = `translateX(-${scrollAmount}px)`;
+            }
+        });
+
+        // Scroll the carousel to the right
+        nextBtn.addEventListener('click', () => {
+            if (scrollAmount < (carouselInner.scrollWidth - carouselInner.offsetWidth)) {
+                scrollAmount += 270;  // Adjust width to match card width and margin
+                carouselInner.style.transform = `translateX(-${scrollAmount}px)`;
+            }
+        });
+        // Mobile Menu Toggle
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // Show More Images functionality
+        const viewMoreButton = document.getElementById("view-more");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        let showingAllImages = false;
+
+        viewMoreButton.addEventListener("click", () => {
+            if (showingAllImages) {
+                galleryItems.forEach((item, index) => {
+                    if (index >= 5) item.classList.add("hidden");
+                });
+                viewMoreButton.textContent = "View More";
+            } else {
+                galleryItems.forEach(item => item.classList.remove("hidden"));
+                viewMoreButton.textContent = "View Less";
+            }
+            showingAllImages = !showingAllImages;
+        });
+
+        // Initially hide images beyond the 5th
+        galleryItems.forEach((item, index) => {
+            if (index >= 5) item.classList.add("hidden");
+        });
+    </script>
+
+</body>
+
+</html>
